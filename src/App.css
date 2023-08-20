@@ -11,6 +11,7 @@
   width: 100%;
   height: 10%;
   background-color: white;
+  margin-bottom: 20px;
 }
 
 .Logo {
@@ -33,19 +34,37 @@
 }
 
 .DoorConfig {
+  position: relative;
   /* border: 2px solid #003B62; */
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   /* background-image: url("public/images/background_test.png"); */
   background-size: cover;
 }
 
 .Content {
+  position: relative;
+  width: 100vw;
   height: 100vh;
   background-image: url("/public/images/background_large.png");
-  background-size: 100% auto;
   background-size: cover;
   /* background-position: center top; */
     /* background-attachment: fixed; */
+}
+
+.DoorImage {
+  position: relative;
+  width: 200px;
+  height: 430px;
+}
+
+.ColorImage {
+  position: relative;
+  mix-blend-mode: multiply;
+}
+
+.blend-multiply {
+  mix-blend-mode: multiply;
 }
 
 body {

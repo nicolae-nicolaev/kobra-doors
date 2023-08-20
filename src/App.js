@@ -25,14 +25,14 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div className=''>
+      <div className='flex'>
         <div className='Content'>
           <div className="h-full grid grid-cols-9">
-            <div className='flex-none col-span-4'>
+            <div className='col-span-4'>
               <Sidebar onSelect={updateDoorConfig} />
             </div>
 
-            <div className='flex-none col-span-5'>
+            <div className='flex-none col-span-5 sticky left-0'>
               <DoorPreview selectedOptions={doorConfig} />
             </div>
           </div>

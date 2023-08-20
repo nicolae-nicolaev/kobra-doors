@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './../App.css';
 import { DoorMapping, ColorMapping, GlassMapping } from '../constants/Constants';
 
 const DoorPreview = ({ selectedOptions }) => {
@@ -48,25 +49,47 @@ const DoorPreview = ({ selectedOptions }) => {
                     <p>Color: {doorConfig.color || 'N/A'}</p>
                     <p>Window Shape: {doorConfig.windowShape || 'N/A'}</p> */}
 
-                    <img src={
-                        findDoorSrc() ? findDoorSrc().src : ""
-                    } className="fixed bottom-[145px] ml-[315px] max-w-full max-h-full" />
+<div className='sticky right-20'>
+                        <img src={
+                            findGlassSrc() ? findGlassSrc().src : ""
+                        } className="max-w-[200px] max-h-[400px] fixed bottom-[145px] ml-[315px]"
+                        />
+                    </div>
 
-                    <img src={
-                        findColorSrc() ? findColorSrc().previewSrc : ""
-                    } className="max-w-full max-h-full" />
-
-                    <img src={
-                        findGlassSrc() ? findGlassSrc().src : ""
-                    } className="max-w-full max-h-full" />
+                    <div className='sticky right-20'>
+                        <img src={
+                            findDoorSrc() ? findDoorSrc().src : ""
+                        } className="fixed bottom-[145px] ml-[315px] max-w-[200] max-h-[450]"
+                        id="doorImage"
+                        style={{
+                            maxWidth: '200px',
+                            maxHeight: '400px'
+                        }}
+                        onLoad={() => {
+                            const doorImg = document.getElementById("doorImage");
+                            const colorImg = document.getElementById("colorImage");
+                            if (doorImg && colorImg) {
+                                colorImg.style.width = `${doorImg.width}px`;
+                                colorImg.style.height = `${doorImg.height}px`;
+                            }
+                        }}
+                        />
+                    </div>
+                    <div className='sticky right-20'>
+                        <img src={
+                            findColorSrc() ? findColorSrc().src : ""
+                        } className="fixed bottom-[145px] ml-[315px] max-w-full max-h-full max-w-full max-h-full opacity-60 blend-multiply"
+                        id="colorImage"
+                        style={{
+                            backgroundImage: `url(${findColorSrc() ? findColorSrc().src : ""})`,
+                            backgroundBlendMode: 'multiply',
+                            maskImage: `url(${findDoorSrc() ? findDoorSrc().src : ""})`,
+                            maskSize: 'cover',
+                            maskRepeat: 'no-repeat',
+                        }}/>
+                    </div>
                 </div>
             </div>
-
-            {/* {selectedImage && showSelectedImage && (
-                <div className="fixed top-[25%] left-[63%] transform[-translate(-50%, -50%)] max-w-[calc(100% - 60px)] max-h-[calc(100% - 60px)] flex items-center justify-center bg-black bg-opacity-80">
-                    <img src={selectedImage} alt="Selected Image" className="max-w-full max-h-full" />
-                </div>
-            )} */}
         </div>
     );
 
