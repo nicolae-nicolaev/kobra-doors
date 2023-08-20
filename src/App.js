@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import DoorPreview from './components/DoorPreview';
 
 function App() {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className="h-full grid grid-cols-9">
+        <div className='flex-none col-span-4'>
+          <Sidebar onSelect={handleOptionSelect} />
+        </div>
+        
+        <div className='flex-none col-span-5'>
+          <DoorPreview selectedOptions={selectedOption} />
+        </div>
+      </div>
     </div>
   );
 }
