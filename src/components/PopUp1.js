@@ -1,11 +1,12 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { DoorMapping } from '../constants/Constants';
 
 
 const PopUp1 = (props) => {
 
   const [selectedButton, setSelectedButton] = useState('fiberglass');
   const [selectedImage, setSelectedImage] = useState(null);
-  const [showSelectedImage, setShowSelectedImage] = useState(false);
+  // const [showSelectedImage, setShowSelectedImage] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -16,31 +17,36 @@ const PopUp1 = (props) => {
 
   const handleChildElementClick = (button) => {
     setSelectedButton(button);
-    setShowSelectedImage(false);
+    // setShowSelectedImage(false);
   };
 
   const handleImageClick = (image) => {
-    setSelectedImage(image);
-    setShowSelectedImage(true);
+    setSelectedImage(image.id);
+    props.onDoorModelClick({
+      doorShape: image.id
+    });
+    // setShowSelectedImage(true);
   };
 
   const renderImages = () => {
     if (selectedButton === 'fiberglass') {
-      const images = [
-        '../public/fiberglass/1.jpeg',
-        '/fiberglass/2.jpeg',
-        '/fiberglass/3.jpeg',
-        '/fiberglass/4.jpeg',
-        '/fiberglass/5.jpeg',
-        '/fiberglass/6.jpeg',
-      ];
+      // const images = [
+      //   '../public/fiberglass/1.jpeg',
+      //   '/fiberglass/2.jpeg',
+      //   '/fiberglass/3.jpeg',
+      //   '/fiberglass/4.jpeg',
+      //   '/fiberglass/5.jpeg',
+      //   '/fiberglass/6.jpeg',
+      // ];
+
+      const images = DoorMapping.filter(door => door.category === "fiberglass");
 
       return (
         <div className="flex flex-wrap ml-[22px] mt-8 gap-x-16 gap-y-10 grid-start-2 grid-end-3 grid-span-2">
           {images.map((image, index) => (
             <img
               key={index}
-              src={image}
+              src={image.src}
               alt={`Image ${index + 1}`}
               className="w-[130px] h-[300px] object-cover cursor-pointer"
               onClick={() => handleImageClick(image)}
@@ -49,20 +55,22 @@ const PopUp1 = (props) => {
         </div>
       );
     } else if (selectedButton === 'steel') {
-      const images = [
-        '/steel/1.jpeg',
-        '/steel/2.jpeg',
-        '/steel/3.jpeg',
-        '/steel/4.jpeg',
-        '/steel/5.jpeg',
-      ];
+      // const images = [
+      //   '/steel/1.jpeg',
+      //   '/steel/2.jpeg',
+      //   '/steel/3.jpeg',
+      //   '/steel/4.jpeg',
+      //   '/steel/5.jpeg',
+      // ];
+      const images = DoorMapping.filter(door => door.category === "steel");
+      console.log(images);
 
       return (
         <div className="flex flex-wrap gap-x-5 gap-y-10 mt-8">
           {images.map((image, index) => (
             <img
               key={index}
-              src={image}
+              src={image.src}
               alt={`Image ${index + 1}`}
               className="w-[130px] h-[300px] object-cover cursor-pointer"
               onClick={() => handleImageClick(image)}
@@ -77,8 +85,8 @@ const PopUp1 = (props) => {
 
   const handleDoorModelClick = (doorModel) => {
     setSelectedButton(doorModel); // Modificăm selectedButton pentru a seta modelul de ușă selectat
-    setShowSelectedImage(false); // Închidem imaginea din primul pop-up
-    props.onDoorModelClick(doorModel); // Tratăm evenimentul de selectare a modelului de ușă
+    // setShowSelectedImage(false); // Închidem imaginea din primul pop-up
+    // props.onDoorModelClick(doorModel); // Tratăm evenimentul de selectare a modelului de ușă
   };
 
   return (

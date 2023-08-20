@@ -10,6 +10,8 @@ import submitIcon from '../public/icons/option.svg';
 
 import Button from './Button';
 import PopUp1 from "./PopUp1";
+import PopUp2 from "./PopUp2";
+import PopUp3 from "./PopUp3";
 
 const Sidebar = ({ onSelect }) => {
 
@@ -19,7 +21,6 @@ const Sidebar = ({ onSelect }) => {
   const [showPopUp1, setShowPopUp1] = useState(false);
   const [showPopUp2, setShowPopUp2] = useState(false);
   const [showPopUp3, setShowPopUp3] = useState(false);
-  const [showPopUp4, setShowPopUp4] = useState(false);
   const [showPopUp5, setShowPopUp5] = useState(false);
 
   const openSideBar = (id) => {
@@ -49,22 +50,13 @@ const Sidebar = ({ onSelect }) => {
     } else if (showsubMenu === 2) {
       return (
         <div>
-          COLOR
-          {/* <PopUp2 setShowPopUp2={setShowPopUp2} closePopUp={closePopUp} /> */}
+          <PopUp2 setShowPopUp2={setShowPopUp2} closePopUp={closePopUp} onColorClick={handleOptionClick} />
         </div>
       );
     } else if (showsubMenu === 3) {
       return (
         <div>
-          GLASS
-          {/* <PopUp3 setShowPopUp3={setShowPopUp3} closePopUp={closePopUp} /> */}
-        </div>
-      );
-    } else if (showsubMenu === 4) {
-      return (
-        <div>
-          FURNITURE
-          {/* <PopUp4 setShowPopUp4={setShowPopUp4} closePopUp={closePopUp} /> */}
+          <PopUp3 setShowPopUp3={setShowPopUp3} closePopUp={closePopUp} onGlassClick={handleOptionClick} />
         </div>
       );
     } else if (showsubMenu === 5) {

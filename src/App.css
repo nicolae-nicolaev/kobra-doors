@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 .App {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .Header {
@@ -35,8 +35,17 @@
 .DoorConfig {
   /* border: 2px solid #003B62; */
   width: 100%;
-  background-image: url("public/images/background_test.png");
+  /* background-image: url("public/images/background_test.png"); */
   background-size: cover;
+}
+
+.Content {
+  height: 100vh;
+  background-image: url("/public/images/background_large.png");
+  background-size: 100% auto;
+  background-size: cover;
+  /* background-position: center top; */
+    /* background-attachment: fixed; */
 }
 
 body {
